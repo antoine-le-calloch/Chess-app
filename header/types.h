@@ -19,6 +19,11 @@ typedef struct sdl {
     SDL_Renderer *renderer;
 } sdl_s;
 
+typedef struct Action {
+    int type;
+    coord_s coord;
+} action_s;
+
 typedef struct square {
     int color;
     int piece;

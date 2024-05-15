@@ -11,6 +11,7 @@ int main(int argc, char *args[]) {
     sdl_s sdl = {NULL, NULL};
     board_a board;
     SDL_Event event;
+    action_s lastAction = {NO_ACTION, {0, 0}};
 
     // Set up the game
     if(!sdlSetup(&sdl))
@@ -18,8 +19,12 @@ int main(int argc, char *args[]) {
     gameSetup(sdl.renderer, board);
 
     // Process the game
-    while (!isQuitEvent(&event)) {
-        gameProcess(sdl.renderer, board);
+    while (1) {
+        SDL_PollEvent(&event);
+        if(isQuitEvent(&event))
+            break;
+
+        gameProcess(sdl.renderer, board, event, &lastAction);
     }
 
     // Quit the game

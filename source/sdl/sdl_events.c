@@ -2,27 +2,17 @@
 
 // Function to detect the SDL quit event
 int isQuitEvent(SDL_Event* event) {
-    while (SDL_PollEvent(event)) {
-        if (event->type == SDL_QUIT) {
-            return TRUE;
-        }
+    return event->type == SDL_QUIT;
+}
+
+// Function to detect the SDL click event and the coord of the click
+int isClickEvent(SDL_Event* event, coord_s* coord){
+    if (event->type == SDL_MOUSEBUTTONDOWN && event->button.button == SDL_BUTTON_LEFT) {
+        int test = SQUARE_SIZE;
+        coord->col = event->button.x / SQUARE_SIZE;
+        coord->line = event->button.y / SQUARE_SIZE;
+        return coord->col >= 0 && coord->line >= 0 &&
+            coord->col < BOARD_SIZE && coord->line < BOARD_SIZE;
     }
     return FALSE;
 }
-
-/*
-// Function to detect the click event and return the coordinates of the click
-coord_s isClickEvent(SDL_Event* event, SDL_Renderer* renderer){
-    coord_s coord = {0, 0};
-    while (1) {
-        SDL_WaitEvent(event);
-        if (event->type == SDL_QUIT) {
-            return coord;
-        }
-        if (event->type == SDL_MOUSEBUTTONDOWN) {
-            coord.col = event->button.x / SQUARE_SIZE;
-            coord.line = event->button.y / SQUARE_SIZE;
-            return coord;
-        }
-    }
-}*/
