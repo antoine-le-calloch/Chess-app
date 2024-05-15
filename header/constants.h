@@ -20,5 +20,13 @@
 #define ROOK 4
 #define QUEEN 5
 #define KING 6
+#define NB_PIECES 7
+
+// Colors
+#define BLACK 0
+#define WHITE 1
+
+// tab with all the SDL_texture of the pieces
+SDL_Surface *piecesSurfaces[2][7];
 
 #endif //CONSTANTS_H

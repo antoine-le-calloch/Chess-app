@@ -1,14 +1,41 @@
 #include "../../header/game/game_movement.h"
+#include "../../header/sdl/sdl_functions.h"
 
-int movePiece(coord_s lastCoord, coord_s newCoord, int piece){
+int isMovePossible(board_a board, coord_s lastC, coord_s newC){
+    if(board[lastC.line][lastC.col].piece == NO_PIECE){
+        return FALSE;
+    }
     return TRUE;
 }
 
-void movePieceOnBoard(){
-
+void updateBoard(board_a board, coord_s lastC, coord_s newC){
+    board[newC.line][newC.col].piece = board[lastC.line][lastC.col].piece;
+    board[newC.line][newC.col].pieceColor = board[lastC.line][lastC.col].pieceColor;
+    board[lastC.line][lastC.col].piece = NO_PIECE;
 }
 
-void updateBoard(){
+void updateDisplay(SDL_Renderer* renderer, board_a board, coord_s lastCoord, coord_s newCoord){
+    // Remove the piece from the last position
+    square_s lastSquare = board[lastCoord.line][lastCoord.col];
+    SDL_Rect squareRect = {lastCoord.col * SQUARE_SIZE, lastCoord.line * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE};
+    colorOneSquare(renderer, squareRect, lastSquare.color);
 
+    // Add the piece to the new position
+    square_s newSquare = board[newCoord.line][newCoord.col];
+    SDL_Rect square = {
+            (newCoord.col * SQUARE_SIZE),(newCoord.line * SQUARE_SIZE),
+            PIECE_SIZE, PIECE_SIZE};
+    addASurface(renderer, piecesSurfaces[newSquare.pieceColor][newSquare.piece], square);
+
+    // Update the window
+    SDL_RenderPresent(renderer);
 }
 
+int moveOnePiece(SDL_Renderer* renderer, board_a board, coord_s lastCoord, coord_s newCoord){
+    if(!isMovePossible(board, lastCoord, newCoord)){
+        return FALSE;
+    }
+    updateBoard(board, lastCoord, newCoord);
+    updateDisplay(renderer, board, lastCoord, newCoord);
+    return TRUE;
+}

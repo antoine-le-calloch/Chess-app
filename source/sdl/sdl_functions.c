@@ -1,20 +1,58 @@
 #include "../../header/sdl/sdl_functions.h"
 
-// Function to create a SDL_Texture from a BMP file
-SDL_Texture* getTextureFromBMP(SDL_Renderer* renderer, char* path){
-    SDL_Surface *tmp = SDL_LoadBMP(path);
-    if (tmp == NULL) {
+// Function to create a SDL_Surface from a BMP file
+SDL_Surface* getSurfaceFromBMP(char* path){
+    SDL_Surface *surface = SDL_LoadBMP(path);
+    if (surface == NULL) {
         SDL_Log("Error SDL_LoadBMP : %s",
                 SDL_GetError());
         return NULL;
     }
+    return surface;
+}
 
-    SDL_Texture *textureWithBMP = SDL_CreateTextureFromSurface(renderer, tmp);
-    SDL_FreeSurface(tmp);
+// Function to create a SDL_Texture from a BMP file
+SDL_Texture* getTextureFromSurface(SDL_Renderer* renderer, SDL_Surface* surface){
+    SDL_Texture *textureWithBMP = SDL_CreateTextureFromSurface(renderer, surface);
+    // TODO: verify this line
+    //SDL_FreeSurface(surface);
     if (textureWithBMP == NULL) {
         SDL_Log("Error SDL_CreateTextureFromSurface : %s",
                 SDL_GetError());
         return NULL;
     }
     return textureWithBMP;
+}
+
+// Function to add a surface in a square on the renderer
+void addASurface(SDL_Renderer* renderer, SDL_Surface* surface, SDL_Rect square){
+    SDL_Texture* texture = getTextureFromSurface(renderer, surface);
+    SDL_RenderCopy(renderer, texture, NULL, &square);
+}
+
+// Function to color a square on the renderer
+void colorOneSquare(SDL_Renderer* renderer, SDL_Rect square, int color){
+    if(color == WHITE) {
+        SDL_SetRenderDrawColor(renderer, 255, 233, 127, 255); // Select white color
+    }else {
+        SDL_SetRenderDrawColor(renderer, 128, 128, 128, 255); // Select black color
+    }
+    SDL_RenderFillRect(renderer, &square);
+}
+
+// Function to detect if a user click on a renderer and return the square clicked
+coord_s getSquareClicked(SDL_Renderer* renderer){
+    SDL_Event event;
+    coord_s coord = {0, 0};
+    while (1) {
+        SDL_WaitEvent(&event);
+        if (event.type == SDL_QUIT) {
+            return coord;
+        }
+        if (event.type == SDL_MOUSEBUTTONDOWN) {
+            coord.col = event.button.x / SQUARE_SIZE;
+            coord.line = event.button.y / SQUARE_SIZE;
+            return coord;
+        }
+    }
 }

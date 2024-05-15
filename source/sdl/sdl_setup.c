@@ -1,7 +1,7 @@
 #include "../../header/sdl/sdl_setup.h"
 
 // Function to set up a SDL window and renderer
-int setupSDL(sdl_s* sdlPtr){
+int sdlSetup(sdl_s* sdlPtr){
     // Init SDL
     SDL_Init(SDL_INIT_VIDEO);
     sdlPtr->window = SDL_CreateWindow("Chessboard", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
@@ -21,18 +21,8 @@ int setupSDL(sdl_s* sdlPtr){
     return 1;
 }
 
-// Function to detect the SDL quit event
-int isQuitEvent(SDL_Event event) {
-    while (SDL_PollEvent(&event)) {
-        if (event.type == SDL_QUIT) {
-            return TRUE;
-        }
-    }
-    return FALSE;
-}
-
 // Function to quit properly the SDL window and destroy renderer
-void quitSDL(sdl_s* sdlPtr) {
+void sdlQuit(sdl_s* sdlPtr) {
     // Free resources and quit SDL
     SDL_DestroyRenderer(sdlPtr->renderer);
     SDL_DestroyWindow(sdlPtr->window);

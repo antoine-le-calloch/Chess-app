@@ -3,6 +3,6 @@
 
 #include "../types.h"
 
-int movePiece(coord_s lastCoord, coord_s newCoord, int piece);
+int moveOnePiece(SDL_Renderer* renderer, board_a board, coord_s lastCoord, coord_s newCoord);
 
 #endif //GAME_MOVEMENT_H

@@ -2,6 +2,7 @@
 #include "../header/types.h"
 //SDL
 #include "../header/sdl/sdl_setup.h"
+#include "../header/sdl/sdl_events.h"
 //Game
 #include "../header/game/game_setup.h"
 #include "../header/game/game_process.h"
@@ -11,20 +12,17 @@ int main(int argc, char *args[]) {
     board_a board;
     SDL_Event event;
 
-    if(!setupSDL(&sdl))
-    {
+    // Set up the game
+    if(!sdlSetup(&sdl))
         return 1;
-    }
-
     gameSetup(sdl.renderer, board);
 
-    //Start to play
-    while (TRUE) {
-        if (isQuitEvent(event)) {
-            break;
-        }
+    // Process the game
+    while (!isQuitEvent(&event)) {
         gameProcess(sdl.renderer, board);
     }
-    quitSDL(&sdl);
+
+    // Quit the game
+    sdlQuit(&sdl);
     return 0;
 }

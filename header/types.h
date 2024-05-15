@@ -19,6 +19,12 @@ typedef struct sdl {
     SDL_Renderer *renderer;
 } sdl_s;
 
-typedef int board_a[BOARD_SIZE][BOARD_SIZE];
+typedef struct square {
+    int color;
+    int piece;
+    int pieceColor;
+} square_s;
+
+typedef square_s board_a[BOARD_SIZE][BOARD_SIZE];
 
 #endif //TYPES_H

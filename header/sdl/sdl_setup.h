@@ -3,10 +3,8 @@
 
 #include "../types.h"
 
-int setupSDL(sdl_s* sdlPtr);
+int sdlSetup(sdl_s* sdlPtr);
 
-int isQuitEvent(SDL_Event event);
-
-void quitSDL(sdl_s* sdlPtr);
+void sdlQuit(sdl_s* sdlPtr);
 
 #endif //SDL_SETUP_H
