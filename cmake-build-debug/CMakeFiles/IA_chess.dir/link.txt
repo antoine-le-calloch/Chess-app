@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\IA_chess.dir/objects.a
-C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\ar.exe qc CMakeFiles\IA_chess.dir/objects.a @CMakeFiles\IA_chess.dir\objects1.rsp
-C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe -g -Wl,--whole-archive CMakeFiles\IA_chess.dir/objects.a -Wl,--no-whole-archive -o IA_chess.exe -Wl,--out-implib,libIA_chess.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\IA_chess.dir\linkLibs.rsp
