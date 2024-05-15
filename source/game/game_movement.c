@@ -17,14 +17,12 @@ void updateBoard(board_a board, coord_s lastC, coord_s newC){
 void updateDisplay(SDL_Renderer* renderer, board_a board, coord_s lastCoord, coord_s newCoord){
     // Remove the piece from the last position
     square_s lastSquare = board[lastCoord.line][lastCoord.col];
-    SDL_Rect squareRect = {lastCoord.col * SQUARE_SIZE, lastCoord.line * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE};
+    SDL_Rect squareRect = SQUARE(lastCoord.col, lastCoord.line);
     colorOneSquare(renderer, squareRect, lastSquare.color);
 
     // Add the piece to the new position
     square_s newSquare = board[newCoord.line][newCoord.col];
-    SDL_Rect square = {
-            (newCoord.col * SQUARE_SIZE),(newCoord.line * SQUARE_SIZE),
-            PIECE_SIZE, PIECE_SIZE};
+    SDL_Rect square = SQUARE(newCoord.col, newCoord.line);
     addASurface(renderer, piecesSurfaces[newSquare.pieceColor][newSquare.piece], square);
 
     // Update the window

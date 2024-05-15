@@ -55,13 +55,11 @@ void displayBoard(SDL_Renderer* renderer, board_a board){
         for (int col = 0; col < BOARD_SIZE; ++col) {
             boardSquare = board[line][col];
 
-            SDL_Rect squareRect = {col * SQUARE_SIZE, line * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE};
+            SDL_Rect squareRect = SQUARE(col, line);
             colorOneSquare(renderer, squareRect, boardSquare.color);
 
             if(boardSquare.piece > NO_PIECE){ // Add pieces image on the screen
-                SDL_Rect square = {
-                        (col * SQUARE_SIZE),(line * SQUARE_SIZE),
-                        PIECE_SIZE, PIECE_SIZE};
+                SDL_Rect square = SQUARE(col, line);
                 addASurface(renderer, piecesSurfaces[boardSquare.pieceColor][boardSquare.piece], square);
             }
         }

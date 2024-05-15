@@ -34,4 +34,6 @@
 // tab with all the SDL_texture of the pieces
 SDL_Surface *piecesSurfaces[2][NB_PIECES];
 
+#define SQUARE(col, line) (SDL_Rect){(col) * SQUARE_SIZE, (line) * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE}
+
 #endif //CONSTANTS_H

@@ -39,20 +39,3 @@ void colorOneSquare(SDL_Renderer* renderer, SDL_Rect square, int color){
     }
     SDL_RenderFillRect(renderer, &square);
 }
-
-// Function to detect if a user click on a renderer and return the square clicked
-coord_s getSquareClicked(SDL_Renderer* renderer){
-    SDL_Event event;
-    coord_s coord = {0, 0};
-    while (1) {
-        SDL_WaitEvent(&event);
-        if (event.type == SDL_QUIT) {
-            return coord;
-        }
-        if (event.type == SDL_MOUSEBUTTONDOWN) {
-            coord.col = event.button.x / SQUARE_SIZE;
-            coord.line = event.button.y / SQUARE_SIZE;
-            return coord;
-        }
-    }
-}
