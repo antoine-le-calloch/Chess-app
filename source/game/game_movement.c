@@ -20,8 +20,13 @@ void updateDisplay(SDL_Renderer* renderer, board_a board, coord_s lastCoord, coo
     SDL_Rect squareRect = SQUARE(lastCoord.col, lastCoord.line);
     colorOneSquare(renderer, squareRect, lastSquare.color);
 
-    // Add the piece to the new position
     square_s newSquare = board[newCoord.line][newCoord.col];
+
+    // Remove the piece from new position if there is one
+    if(newSquare.piece != NO_PIECE)
+        colorOneSquare(renderer, SQUARE(newCoord.col, newCoord.line), newSquare.color);
+
+    // Add the piece to the new position
     SDL_Rect square = SQUARE(newCoord.col, newCoord.line);
     addASurface(renderer, piecesSurfaces[newSquare.pieceColor][newSquare.piece], square);
 
