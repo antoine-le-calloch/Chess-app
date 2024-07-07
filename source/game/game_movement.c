@@ -1,11 +1,13 @@
-#include "../../header/game/game_movement.h"
 #include "../../header/sdl/sdl_functions.h"
+#include "../../header/game/game_movement.h"
+#include "../../header/game/game_rules.h"
+#include "../../header/game/game_action.h"
 
 int isMovePossible(board_a board, coord_s lastC, coord_s newC){
-    if(board[lastC.line][lastC.col].piece == NO_PIECE){
+    if(board[lastC.line][lastC.col].piece == NO_PIECE)
         return FALSE;
-    }
-    return TRUE;
+
+    return canPawnMove(board, lastC, newC);
 }
 
 void updateBoard(board_a board, coord_s lastC, coord_s newC){
