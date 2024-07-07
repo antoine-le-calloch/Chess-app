@@ -8,11 +8,9 @@ void gameProcess(SDL_Renderer *renderer, board_a board, SDL_Event event, action_
     coord_s coord = {0, 0};
     if (isClickEvent(&event, &coord)) {
         if(lastAction->type == SELECT_PIECE) {
-            if(!isSameColorPiece(board, lastAction->coord, coord)) {
-                moveOnePiece(renderer, board, lastAction->coord, coord);
-                lastAction->type = MOVE_PIECE;
-                lastAction->coord = coord;
-            }
+            moveOnePiece(renderer, board, lastAction->coord, coord);
+            lastAction->type = MOVE_PIECE;
+            lastAction->coord = coord;
         } else if(isPiece(board, coord)) {
             selectOnePiece(renderer, board, coord);
             lastAction->type = SELECT_PIECE;

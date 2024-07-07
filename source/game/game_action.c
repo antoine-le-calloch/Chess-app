@@ -1,5 +1,6 @@
 #include "../../header/sdl/sdl_functions.h"
 #include "../../header/game/game_action.h"
+#include "../../header/game/game_utils.h"
 
 void selectOnePiece(SDL_Renderer* renderer, board_a board, coord_s coord) {
     // add the selected square color
@@ -17,7 +18,7 @@ void unselectOnePiece(SDL_Renderer* renderer, board_a board, coord_s coord) {
     colorOneSquare(renderer, rect, board[coord.line][coord.col].color);
 
     // add the piece
-    if (board[coord.line][coord.col].piece != NO_PIECE) {
+    if (isPiece(board, coord)) {
         square_s boardSquare = board[coord.line][coord.col];
         addASurface(renderer, piecesSurfaces[boardSquare.pieceColor][boardSquare.piece], rect);
     }

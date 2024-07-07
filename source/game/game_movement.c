@@ -2,12 +2,15 @@
 #include "../../header/game/game_movement.h"
 #include "../../header/game/game_rules.h"
 #include "../../header/game/game_action.h"
+#include "../../header/game/game_utils.h"
 
 int isMovePossible(board_a board, coord_s lastC, coord_s newC){
-    if(board[lastC.line][lastC.col].piece == NO_PIECE)
+    if(!isPiece(board, lastC) ||
+        isSameColorPiece(board, lastC, newC)) {
         return FALSE;
+    }
 
-    return canPawnMove(board, lastC, newC);
+    return canBishopMove(board, lastC, newC);
 }
 
 void updateBoard(board_a board, coord_s lastC, coord_s newC){
@@ -24,6 +27,7 @@ void updateDisplay(SDL_Renderer* renderer, board_a board, coord_s lastCoord, coo
     // Remove the piece from new position if there is one
     if(newSquare.piece != NO_PIECE)
         colorOneSquare(renderer, SQUARE(newCoord.col, newCoord.line), newSquare.color);
+
     // Add the piece to the new position
     SDL_Rect square = SQUARE(newCoord.col, newCoord.line);
     addASurface(renderer, piecesSurfaces[newSquare.pieceColor][newSquare.piece], square);

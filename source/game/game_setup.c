@@ -58,7 +58,8 @@ void displayBoard(SDL_Renderer* renderer, board_a board){
             SDL_Rect squareRect = SQUARE(col, line);
             colorOneSquare(renderer, squareRect, boardSquare.color);
 
-            if(boardSquare.piece > NO_PIECE){ // Add pieces image on the screen
+            if(boardSquare.piece > NO_PIECE){
+                // Add pieces image on the screen
                 SDL_Rect square = SQUARE(col, line);
                 addASurface(renderer, piecesSurfaces[boardSquare.pieceColor][boardSquare.piece], square);
             }
