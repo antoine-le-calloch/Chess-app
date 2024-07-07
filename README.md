@@ -13,3 +13,10 @@ The project utilizes SDL2 for graphical interface management and game functional
 - `header/`: Contains project header files.
 - `images/`: Contains graphic resources used in the application.
 - `source/`: Contains the main source code of the application.
+
+## Prerequisites
+- Cmake
+- SDL2
+  - **Ubuntu**: `sudo apt-get install libsdl2-dev`
+  - **MacOS**: `brew install sdl2`
+  - **Windows**: Follow [SDL installation guide](https://wiki.libsdl.org/Installation)
