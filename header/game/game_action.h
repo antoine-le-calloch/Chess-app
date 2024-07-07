@@ -5,4 +5,6 @@
 
 void selectOnePiece(SDL_Renderer* renderer, board_a board, coord_s coord);
 
+void unselectOnePiece(SDL_Renderer* renderer, board_a board, coord_s coord);
+
 #endif //GAME_ACTION_H
