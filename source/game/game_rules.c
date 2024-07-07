@@ -5,3 +5,7 @@ int canPawnMove(board_a board, coord_s lastC, coord_s newC){
 
     return newC.line == lastC.line + way && newC.col == lastC.col;
 }
+
+int canBishopMove(board_a board, coord_s lastC, coord_s newC){
+    return abs(newC.line - lastC.line) == abs(newC.col - lastC.col);
+}
