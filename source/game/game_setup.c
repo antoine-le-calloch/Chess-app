@@ -1,5 +1,5 @@
-#include "../../header/game/game_setup.h"
 #include "../../header/sdl/sdl_functions.h"
+#include "../../header/game/game_setup.h"
 
 void setupBoard(board_a board){
     int piece;
@@ -64,7 +64,6 @@ void displayBoard(SDL_Renderer* renderer, board_a board){
             }
         }
     }
-    SDL_RenderPresent(renderer); // Update the window
 }
 
 // Function to set up the board

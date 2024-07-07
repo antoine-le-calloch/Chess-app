@@ -9,7 +9,6 @@ void selectOnePiece(SDL_Renderer* renderer, board_a board, coord_s coord) {
     // add the selected piece
     square_s boardSquare = board[coord.line][coord.col];
     addASurface(renderer, piecesSurfaces[boardSquare.pieceColor][boardSquare.piece], rect);
-    SDL_RenderPresent(renderer);
 }
 
 void unselectOnePiece(SDL_Renderer* renderer, board_a board, coord_s coord) {
@@ -22,6 +21,4 @@ void unselectOnePiece(SDL_Renderer* renderer, board_a board, coord_s coord) {
         square_s boardSquare = board[coord.line][coord.col];
         addASurface(renderer, piecesSurfaces[boardSquare.pieceColor][boardSquare.piece], rect);
     }
-
-    SDL_RenderPresent(renderer);
 }

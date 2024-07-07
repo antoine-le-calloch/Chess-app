@@ -25,6 +25,8 @@ int main(int argc, char *args[]) {
             break;
 
         gameProcess(sdl.renderer, board, event, &lastAction);
+        // display update
+        SDL_RenderPresent(sdl.renderer);
     }
 
     // Quit the game
