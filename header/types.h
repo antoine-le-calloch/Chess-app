@@ -20,6 +20,7 @@ typedef struct sdl {
 } sdl_s;
 
 typedef struct Action {
+    int currentPlayer;
     int type;
     coord_s coord;
 } action_s;

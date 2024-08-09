@@ -11,8 +11,9 @@ void gameProcess(SDL_Renderer *renderer, board_a board, SDL_Event event, action_
             moveOnePiece(renderer, board, lastAction->coord, coord);
             lastAction->type = MOVE_PIECE;
             lastAction->coord = coord;
-        } else if(isPiece(board, coord)) {
+        } else if(isPieceCurrentPlayer(board, coord, lastAction->currentPlayer)) {
             selectOnePiece(renderer, board, coord);
+            lastAction->currentPlayer = !lastAction->currentPlayer;
             lastAction->type = SELECT_PIECE;
             lastAction->coord = coord;
         }

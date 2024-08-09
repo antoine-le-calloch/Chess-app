@@ -7,11 +7,11 @@
 #include "../header/game/game_setup.h"
 #include "../header/game/game_process.h"
 
-int main(int argc, char *args[]) {
+int main(int argc, char *argv[]) {
     sdl_s sdl = {NULL, NULL};
     board_a board;
     SDL_Event event;
-    action_s lastAction = {NO_ACTION, {0, 0}};
+    action_s lastAction = {WHITE, NO_ACTION, {0, 0}};
 
     // Set up the game
     if(!sdlSetup(&sdl))
