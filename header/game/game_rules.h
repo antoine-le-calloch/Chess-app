@@ -10,5 +10,4 @@ int canRookMove(board_a board, coord_s lastC, coord_s newC);
 int canQueenMove(board_a board, coord_s lastC, coord_s newC);
 int canKingMove(board_a board, coord_s lastC, coord_s newC);
 
-
 #endif //GAME_RULES_H

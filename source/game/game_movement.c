@@ -5,12 +5,17 @@
 #include "../../header/game/game_utils.h"
 
 int isMovePossible(board_a board, coord_s lastC, coord_s newC){
-    if(!isPiece(board, lastC) ||
-        isSameColorPiece(board, lastC, newC)) {
+    if(isSameColorPiece(board, lastC, newC)) {
         return FALSE;
     }
-
-    return canBishopMove(board, lastC, newC);
+    switch (board[lastC.line][lastC.col].piece) {
+        case PAWN:
+            return canPawnMove(board, lastC, newC);
+        case BISHOP:
+            return canBishopMove(board, lastC, newC);
+        default:
+            return FALSE;
+    }
 }
 
 void updateBoard(board_a board, coord_s lastC, coord_s newC){
