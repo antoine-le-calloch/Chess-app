@@ -17,6 +17,10 @@ int isMovePossible(board_a board, coord_s lastC, coord_s newC){
             return canKnightMove(board, lastC, newC);
         case ROOK:
             return canRookMove(board, lastC, newC);
+        case QUEEN:
+            return canQueenMove(board, lastC, newC);
+        case KING:
+            return canKingMove(board, lastC, newC);
         default:
             return FALSE;
     }

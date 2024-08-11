@@ -32,3 +32,13 @@ int canRookMove(board_a board, coord_s lastC, coord_s newC){
     }
     return FALSE;
 }
+
+int canQueenMove(board_a board, coord_s lastC, coord_s newC){
+    return canBishopMove(board, lastC, newC) || canRookMove(board, lastC, newC);
+}
+
+int canKingMove(board_a board, coord_s lastC, coord_s newC){
+    int dLine = abs(newC.line - lastC.line);
+    int dCol = abs(newC.col - lastC.col);
+    return dLine <= 1 && dCol <= 1;
+}
