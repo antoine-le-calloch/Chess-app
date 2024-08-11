@@ -1,6 +1,6 @@
 #include "../../header/game/game_utils.h"
 
-int isPieceCurrentPlayer(board_a board, coord_s coord, int currentPlayer){
+int isPieceAndCurrentPlayer(board_a board, coord_s coord, int currentPlayer){
     if(isPiece(board, coord))
         return board[coord.line][coord.col].pieceColor == currentPlayer;
     return FALSE;

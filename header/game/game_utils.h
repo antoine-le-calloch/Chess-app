@@ -3,7 +3,7 @@
 
 #include "../types.h"
 
-int isPieceCurrentPlayer(board_a board, coord_s coord, int currentPlayer);
+int isPieceAndCurrentPlayer(board_a board, coord_s coord, int currentPlayer);
 
 int isPiece(board_a board, coord_s coord);
 
