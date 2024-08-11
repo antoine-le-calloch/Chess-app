@@ -13,23 +13,18 @@ int main(int argc, char *argv[]) {
     SDL_Event event;
     action_s lastAction = {WHITE, NO_ACTION, {0, 0}};
 
-    // Set up the game
     if(!sdlSetup(&sdl))
         return 1;
     gameSetup(sdl.renderer, board);
 
-    // Process the game
     while (1) {
         SDL_PollEvent(&event);
         if(isQuitEvent(&event))
             break;
 
         gameProcess(sdl.renderer, board, event, &lastAction);
-        // display update
-        SDL_RenderPresent(sdl.renderer);
+        SDL_RenderPresent(sdl.renderer); // display update
     }
-
-    // Quit the game
-    sdlQuit(&sdl);
+    sdlQuit(&sdl); // Quit the game
     return 0;
 }
