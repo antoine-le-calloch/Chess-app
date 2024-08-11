@@ -13,6 +13,8 @@ int isMovePossible(board_a board, coord_s lastC, coord_s newC){
             return canPawnMove(board, lastC, newC);
         case BISHOP:
             return canBishopMove(board, lastC, newC);
+        case ROOK:
+            return canRookMove(board, lastC, newC);
         default:
             return FALSE;
     }

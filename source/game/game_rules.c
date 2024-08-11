@@ -11,3 +11,7 @@ int canPawnMove(board_a board, coord_s lastC, coord_s newC){
 int canBishopMove(board_a board, coord_s lastC, coord_s newC){
     return abs(newC.line - lastC.line) == abs(newC.col - lastC.col);
 }
+
+int canRookMove(board_a board, coord_s lastC, coord_s newC){
+    return newC.line == lastC.line || newC.col == lastC.col;
+}
