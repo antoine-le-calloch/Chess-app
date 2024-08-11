@@ -8,8 +8,9 @@ void gameProcess(SDL_Renderer *renderer, board_a board, SDL_Event event, action_
     coord_s coord = {0, 0};
     if (isClickEvent(&event, &coord)) {
         if(lastAction->type == SELECT_PIECE) {
-            if(moveOnePiece(renderer, board, lastAction->coord, coord))
+            if(moveOnePiece(renderer, board, lastAction->coord, coord)) {
                 lastAction->currentPlayer = !lastAction->currentPlayer;
+            }
             lastAction->type = MOVE_PIECE;
             lastAction->coord = coord;
         } else if(isPieceAndCurrentPlayer(board, coord, lastAction->currentPlayer)) {
