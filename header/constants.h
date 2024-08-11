@@ -6,7 +6,6 @@
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 640
 #define SQUARE_SIZE (SCREEN_WIDTH / BOARD_SIZE)
-#define PIECE_SIZE (SQUARE_SIZE)
 
 // Bool
 #define FALSE 0
