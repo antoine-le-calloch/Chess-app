@@ -11,4 +11,6 @@ int isSameColorPiece(board_a board, coord_s coord1, coord_s coord2);
 
 int isDifferentColorPiece(board_a board, coord_s coord1, coord_s coord2);
 
+int isPieceBetween(board_a board, coord_s coord1, coord_s coord2);
+
 #endif //GAME_UTILS_H
