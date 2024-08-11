@@ -2,7 +2,7 @@
 
 ## Description
 Chess-app is a chess game application featuring AI players, developed in C.
-The project utilizes SDL2 for graphical interface management and game functionalities.
+The project use SDL2 for graphical interface management.
 
 ## Features
 - Play chess against AI players.
