@@ -23,12 +23,13 @@ int isDifferentColorPiece(board_a board, coord_s coord1, coord_s coord2){
 }
 
 int isPieceBetween(board_a board, coord_s coord1, coord_s coord2){
-    int wayLine = coord2.line > coord1.line ? 1 : -1;
-    int wayCol = coord2.col > coord1.col ? 1 : -1;
+    /* Find the way on each axis, it can be 1, 0 or -1 */
+    int wayLine = (coord2.line > coord1.line) - (coord2.line < coord1.line);
+    int wayCol = (coord2.col > coord1.col) - (coord2.col < coord1.col);
     int line = coord1.line + wayLine;
     int col = coord1.col + wayCol;
-    while (line != coord2.line && col != coord2.col){
-        if(board[line][col].pieceColor != NO_PIECE){
+    while (line != coord2.line || col != coord2.col){
+        if(board[line][col].piece != NO_PIECE){
             return TRUE;
         }
         line += wayLine;
