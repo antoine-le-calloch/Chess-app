@@ -13,6 +13,6 @@ int isDifferentColorPiece(board_a board, coord_s coord1, coord_s coord2);
 
 int isPieceBetween(board_a board, coord_s coord1, coord_s coord2);
 
-int isKingInCheck(board_a board, int kingColorToCheck);
+int isCheck(board_a board, int kingColorToCheck);
 
 #endif //GAME_UTILS_H

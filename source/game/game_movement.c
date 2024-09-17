@@ -55,7 +55,7 @@ void updateDisplay(SDL_Renderer* renderer, board_a board, coord_s lastCoord, coo
 int moveOnePiece(SDL_Renderer* renderer, board_a board, coord_s lastCoord, coord_s newCoord){
     if(isMovePossible(board, lastCoord, newCoord)){
         updateBoard(board, lastCoord, newCoord);
-        if(isKingInCheck(board, board[lastCoord.line][lastCoord.col].pieceColor)){
+        if(isCheck(board, board[lastCoord.line][lastCoord.col].pieceColor)){
             rollbackBoard(board, lastCoord, newCoord);
         }else{
             updateDisplay(renderer, board, lastCoord, newCoord);

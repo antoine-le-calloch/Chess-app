@@ -51,7 +51,7 @@ coord_s findKing(board_a board, int kingColor){
     }
 }
 
-int isKingInCheck(board_a board, int kingColorToCheck) {
+int isCheck(board_a board, int kingColorToCheck) {
     coord_s kingCoord = findKing(board, kingColorToCheck);
     int i, j;
     for(i = 0; i < BOARD_SIZE; i++){
