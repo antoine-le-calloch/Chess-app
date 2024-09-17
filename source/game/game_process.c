@@ -9,7 +9,11 @@ void gameProcess(SDL_Renderer *renderer, board_a board, SDL_Event event, action_
     if (isClickEvent(&event, &coord)) {
         if(lastAction->type == SELECT_PIECE) {
             if(moveOnePiece(renderer, board, lastAction->coord, coord)) {
+                int colorToCheck = lastAction->currentPlayer;
                 lastAction->currentPlayer = !lastAction->currentPlayer;
+                if(isCheckmate(board, colorToCheck)) {
+                    lastAction->type = CHECKMATE;
+                }
             }
             lastAction->type = MOVE_PIECE;
             lastAction->coord = coord;

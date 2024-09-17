@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 
     while (1) {
         SDL_PollEvent(&event);
-        if(isQuitEvent(&event))
+        if(isQuitEvent(&event) || lastAction.type == CHECKMATE)
             break;
 
         gameProcess(sdl.renderer, board, event, &lastAction);

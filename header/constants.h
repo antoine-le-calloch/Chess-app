@@ -29,6 +29,7 @@
 #define NO_ACTION 0
 #define SELECT_PIECE 1
 #define MOVE_PIECE 2
+#define CHECKMATE 3
 
 // tab with all the SDL_texture of the pieces
 SDL_Surface *piecesSurfaces[2][NB_PIECES];

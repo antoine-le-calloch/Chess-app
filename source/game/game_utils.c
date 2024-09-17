@@ -65,3 +65,10 @@ int isCheck(board_a board, int kingColorToCheck) {
     }
     return FALSE;
 }
+
+int isCheckmate(board_a board, int kingColorToCheck) {
+    if(isCheck(board, kingColorToCheck)){
+        return TRUE;
+    }
+    return FALSE;
+}
