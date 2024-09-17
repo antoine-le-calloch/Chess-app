@@ -32,6 +32,12 @@ void updateBoard(board_a board, coord_s lastC, coord_s newC){
     board[lastC.line][lastC.col].piece = NO_PIECE;
 }
 
+void rollbackBoard(board_a board, coord_s baseC, coord_s updateC){
+    board[baseC.line][baseC.col].piece = board[updateC.line][updateC.col].piece;
+    board[baseC.line][baseC.col].pieceColor = board[updateC.line][updateC.col].pieceColor;
+    board[updateC.line][updateC.col].piece = NO_PIECE;
+}
+
 void updateDisplay(SDL_Renderer* renderer, board_a board, coord_s lastCoord, coord_s newCoord){
     // update the last position square
     unselectOnePiece(renderer, board, lastCoord);
@@ -49,8 +55,12 @@ void updateDisplay(SDL_Renderer* renderer, board_a board, coord_s lastCoord, coo
 int moveOnePiece(SDL_Renderer* renderer, board_a board, coord_s lastCoord, coord_s newCoord){
     if(isMovePossible(board, lastCoord, newCoord)){
         updateBoard(board, lastCoord, newCoord);
-        updateDisplay(renderer, board, lastCoord, newCoord);
-        return TRUE;
+        if(isKingInCheck(board, board[lastCoord.line][lastCoord.col].pieceColor)){
+            rollbackBoard(board, lastCoord, newCoord);
+        }else{
+            updateDisplay(renderer, board, lastCoord, newCoord);
+            return TRUE;
+        }
     }
     unselectOnePiece(renderer, board, lastCoord);
     return FALSE;

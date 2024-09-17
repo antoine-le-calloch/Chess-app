@@ -1,4 +1,5 @@
 #include "../../header/game/game_utils.h"
+#include "../../header/game/game_movement.h"
 
 int isPieceAndCurrentPlayer(board_a board, coord_s coord, int currentPlayer){
     if(isPiece(board, coord))
@@ -34,6 +35,33 @@ int isPieceBetween(board_a board, coord_s coord1, coord_s coord2){
         }
         line += wayLine;
         col += wayCol;
+    }
+    return FALSE;
+}
+
+coord_s findKing(board_a board, int kingColor){
+    int i, j;
+    for(i = 0; i < BOARD_SIZE; i++){
+        for(j = 0; j < BOARD_SIZE; j++){
+            if(board[i][j].piece == KING && board[i][j].pieceColor == kingColor){
+                coord_s kingCoord = {i, j};
+                return kingCoord;
+            }
+        }
+    }
+}
+
+int isKingInCheck(board_a board, int kingColorToCheck) {
+    coord_s kingCoord = findKing(board, kingColorToCheck);
+    int i, j;
+    for(i = 0; i < BOARD_SIZE; i++){
+        for(j = 0; j < BOARD_SIZE; j++){
+            coord_s pieceCoord = {i,j};
+            if(board[pieceCoord.line][pieceCoord.col].pieceColor != kingColorToCheck &&
+                isMovePossible(board, pieceCoord, kingCoord)){
+                return TRUE;
+            }
+        }
     }
     return FALSE;
 }
